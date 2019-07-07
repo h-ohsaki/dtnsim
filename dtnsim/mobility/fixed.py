@@ -7,6 +7,19 @@
 # Id: Fixed.pm,v 1.13 2015/12/30 02:54:47 ohsaki Exp $
 #
 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import math, random
 from vector_2d import Vector as V
 
@@ -22,7 +35,8 @@ class Fixed:
 
     def __repr__(self):
         name = self.__class__.__name__
-        return f'{name}(width={self.width!r}, height={self.height!r}, current={self.current!r}, wait={self.wait!r})'
+        return '{}(width={!r}, height={!r}, current={!r}, wait={!r})'.format(
+            name, self.width, self.height, self.current, self.wait)
 
     def random_coordinate(self):
         """Pick a random coordinate on the field."""
