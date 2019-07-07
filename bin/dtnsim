@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+#
+# A simulator for DTN routing with several agent/mobility models.
+# Copyright (c) 2010-2015, Hiroyuki Ohsaki.
+# All rights reserved.
+#
+# Id: $
+#
+
+import os
+import random
+import sys
+
+import dtnsim
+import dtnsim.agent
+import dtnsim.mobility
+import dtnsim.mobility.graph
+import dtnsim.monitor
+import dtnsim.path
+
+from perl import die, warn, getopts
+import tbdump
+
+MAX_VELOCITY = 4000 / 60 / 60  # maximum node velocity [m/s]
+MIN_VELOCITY = MAX_VELOCITY / 2  # minimum node velocity [m/s]
+MIN_PAUSE = 0  # minimum pause time [s]
+MAX_PAUSE = 5 * 60  # maximum pause time [s]
+
+def usage():
+    prog = os.path.basename(sys.argv[0])
+    die(f"""
+usage: {prog} [-v] [-s #] [-n #] [-r range] [-I id[,id]...] [-m mobility] [-p path] [-a agent] [-M monitor]
+  -v            verbose mode
+  -s #          seed of random number generator
+  -n #          number of agents
+  -r range      communication range [m]
+  -I id[,id...] initial infected nodes
+  -m mobility   name of mobility class (Fixed/FullMixed/LevyWalk/LimitedRandomWaypoint/RandomWalk/RandomWaypoint/graph.Fixed/graph.Sequential/graph.RandomWalk/grpah.CRWP)
+  -p path       name of path class (NONE/Line/Grid/Voronoi)
+  -a agent      name of agent class (CarryOnly/Random/Epidemic/P_BCAST/SA_BCAST/HP_BCAST/ProPHET)
+  -M monitor    name of monitor class (Null/Log/Cell)
+""")
+
+def create_agents(sched, monitor, agent_class, nagents, range_, init_infected,
+                  mobility_class, path):
+    """Create the number NAGENTS of agents of the class AGENT_CLASS, whose
+    mobility models are initialized as MOBILITY_CLASS class.  INIT_INFECTED is
+    a list of identifiers (starting from 1) of initially-infected agents."""
+
+    def vel_func():
+        """A callback function for returning the velocity of an agent."""
+        return random.uniform(MIN_VELOCITY, MAX_VELOCITY)
+
+    def pause_func():
+        """A callback function for returning the pause time of an agent."""
+        return random.uniform(MIN_PAUSE, MAX_PAUSE)
+
+    for i in range(nagents):
+        cls = eval('dtnsim.mobility.' + mobility_class)
+        mobility = cls(vel_func=vel_func, pause_func=pause_func, path=path)
+        cls = eval('dtnsim.agent.' + agent_class)
+        agent = cls(
+            scheduler=sched, mobility=mobility, monitor=monitor, range_=range_)
+
+    for i in init_infected:
+        # store a message (the first message sent from agent 1 destined for agent 2)
+        sched.agent_by_id(i).received['1-2-1'] = 1
+
+def main():
+    # parse command-line arguments
+    opt = getopts('vs:n:r:I:m:p:a:M:') or usage()
+    verbose = opt.v
+    seed = opt.s if opt.s else 1
+    nagents = int(opt.n) if opt.n else 50
+    range_ = float(opt.r) if opt.r else 40
+    if opt.I:
+        init_infected = [int(s) for s in opt.I.split(',')]
+    else:
+        init_infected = [1]
+    mobility_class = opt.m if opt.m else 'graph.CRWP'
+    path_class = opt.p if opt.p else 'Voronoi'
+    agent_class = opt.a if opt.a else 'P_BCAST'
+    monitor_class = opt.M if opt.M else 'Cell'
+
+    # initialize random number generator
+    random.seed(seed)
+
+    sched = dtnsim.Scheduler(max_time=1000000, delta=5)
+    cls = eval('dtnsim.monitor.' + monitor_class)
+
+    monitor = cls(scheduler=sched)
+    monitor.open()
+
+    cls = eval('dtnsim.path.' + path_class)
+    path = cls(npoints=100)
+    monitor.display_path(path)
+
+    create_agents(sched, monitor, agent_class, nagents, range_, init_infected,
+                  mobility_class, path)
+    monitor.display_agents()
+
+    # the main loop
+    while sched.is_running():
+        sched.cache_zones()
+        for agent in sched.agents:
+            agent.advance()
+        for agent in sched.agents:
+            agent.flush()
+        monitor.display_status()
+        monitor.update()
+        sched.advance()
+    monitor.close()
+
+if __name__ == "__main__":
+    main()
