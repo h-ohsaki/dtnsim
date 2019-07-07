@@ -62,7 +62,7 @@ class Cell(Null):
             p = graph.get_vertex_attribute(v, 'xy')
             x, y = to_geometry(p[0]), to_geometry(p[1])
             print('define v{} ellipse 2 2 c_vertex {} {}'.format(v, x, y))
-            print('define v{0}t text {0} 14 white {1} {2}'.format(v, x, y))
+            #print('define v{0}t text {0} 14 white {1} {2}'.format(v, x, y))
         for u, v in graph.edges():
             print('define - link v{} v{} 1 c_edge'.format(u, v))
         # NOTE: this code assumes paths will not move indefinitely
