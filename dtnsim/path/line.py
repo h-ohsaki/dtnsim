@@ -31,7 +31,7 @@ class Line(NONE):
         super().__init__(*args, **kwargs)
 
         # create a linear topology
-        g = graphtools.Graph(directed=False)
+        g = graph_tools.Graph(directed=False)
         self.graph = g
         g.create_graph('lattice', 1, self.size)
 
