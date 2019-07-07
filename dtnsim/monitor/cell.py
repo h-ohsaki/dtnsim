@@ -7,6 +7,19 @@
 # Id: Cell.pm,v 1.3 2017/11/08 03:22:30 ohsaki Exp ohsaki $
 #
 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import math
 import random
 
@@ -48,40 +61,41 @@ class Cell(Null):
         for v in sorted(graph.vertices()):
             p = graph.get_vertex_attribute(v, 'xy')
             x, y = to_geometry(p[0]), to_geometry(p[1])
-            print(f'define v{v} ellipse 2 2 c_vertex {x} {y}')
-            #print(f'define v{v}t text {v} 14 white {x} {y}')
+            print('define v{} ellipse 2 2 c_vertex {} {}'.format(v, x, y))
+            print('define v{0}t text {0} 14 white {1} {2}'.format(v, x, y))
         for u, v in graph.edges():
-            print(f'define - link v{u} v{v} 1 c_edge')
+            print('define - link v{} v{} 1 c_edge'.format(u, v))
         # NOTE: this code assumes paths will not move indefinitely
         print('fix /./')
 
     def change_agent_status(self, agent):
         """Update the color of agent if it has already received a message."""
-        id = agent.id_
+        id_ = agent.id_
         color = 'c_sus'
         if agent.received or agent.receive_queue:
             color = 'c_inf'
-        print(f'color agent{id} {color}')
-        print(f'color agentr{id} {color}_range')
+        print('color agent{} {}'.format(id_, color))
+        print('color agentr{} {}_range'.format(id_, color))
 
     def display_agents(self):
         """Draw all agents on the field."""
         for agent in self.scheduler.agents:
-            id = agent.id_
+            id_ = agent.id_
             p = agent.mobility.current
             x, y = to_geometry(p[0]), to_geometry(p[1])
             r = to_geometry(agent.range_)
-            print(f'define agent{id} ellipse 4 4 white {x} {y}')
-            print(f'define agentr{id} ellipse {r} {r} white {x} {y}')
+            print('define agent{} ellipse 4 4 white {} {}'.format(id_, x, y))
+            print('define agentr{0} ellipse {1} {1} white {2} {3}'.format(
+                id_, r, x, y))
             self.change_agent_status(agent)
 
     def move_agent(self, agent):
         """Reposition the location of the agent AGENT."""
-        id = agent.id_
+        id_ = agent.id_
         p = agent.mobility.current
         x, y = to_geometry(p[0]), to_geometry(p[1])
-        print(f'move agent{id} {x} {y}')
-        print(f'move agentr{id} {x} {y}')
+        print('move agent{} {} {}'.format(id_, x, y))
+        print('move agentr{} {} {}'.format(id_, x, y))
 
     def display_status(self):
         """Display the current statistics at the top of the screen."""
@@ -93,8 +107,9 @@ class Cell(Null):
         delivered_total = float2str(self.delivered_total, '10g')
         uniq_delivered_total = float2str(self.uniq_delivered_total, '10g')
         print(
-            f'define status_l text Time:{time},____TX:{tx},____RX:{rx},____DUP:{dup},____Delivered:{uniq_delivered_total}__/__{uniq_total},____Arrived:{delivered_total} 14 white 0.5 0.05'
-        )
+            'define status_l text Time:{},____TX:{},____RX:{},____DUP:{},____Delivered:{}__/__{},____Arrived:{} 14 white 0.5 0.05'
+            .format(time, tx, rx, dup, uniq_delivered_total, uniq_total,
+                    delivered_total))
 
     def display_forward(self, src_agent, dst_agent, msg):
         """Display the completion of message delivery for agents of Fixed
@@ -110,7 +125,7 @@ class Cell(Null):
         dst_p = self.scheduler.agent_by_id(dst).mobility.current
         x1, y1, x2, y2 = to_geometry(src_p[0]), to_geometry(
             src_p[1]), to_geometry(dst_p[0]), to_geometry(dst_p[1])
-        print(f'define - line {x1} {y1} {x2} {y2} 1 c_delivery')
+        print('define - line {} {} {} {} 1 c_delivery'.format(x1, y1, x2, y2))
 
     def update(self):
         print('display')
