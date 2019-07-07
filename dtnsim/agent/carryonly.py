@@ -1,11 +1,24 @@
 #!/usr/bin/env python3
 #
 # Agent class for single-copy and carry-only routing.
-# Copyright (c) 2011-2018, Hiroyuki Ohsaki.
+# Copyright (c) 2011-2019, Hiroyuki Ohsaki.
 # All rights reserved.
 #
 # Id: CarryOnly.pm,v 1.11 2015/12/11 08:14:04 ohsaki Exp $
 #
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from collections import defaultdict
 import math
@@ -49,7 +62,8 @@ class CarryOnly():
 
     def __repr__(self):
         name = self.__class__.__name__
-        return f'{name}(id_={self.id_!r}, mobility={self.mobility!r}, range_={self.range_!r}'
+        return '{}(id_={!r}, mobility={!r}, range_={!r}'.format(
+            name, self.id_, self.mobility, self.range_)
 
     def msg_src(self, msg):
         src = msg.split('-')[0]
@@ -150,8 +164,8 @@ class CarryOnly():
     def pending_messages(self):
         """Return all messages need to be delivered."""
         return [
-            msg for msg in self.messages() if self.msg_dst(msg) != self.id_
-            and not msg in self.delivered
+            msg for msg in self.messages()
+            if self.msg_dst(msg) != self.id_ and not msg in self.delivered
         ]
 
     def accepted_messages(self):
