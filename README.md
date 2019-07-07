@@ -1,6 +1,6 @@
 # NAME
 
-dtnsim - DTN (Delay/Disruption Tolerant Networking) simulator
+dtnsim - DTN (Delay/Disruption Tolerant Networking) simulator written in Python
 
 # DESCRIPTION
 
@@ -19,11 +19,11 @@ is not suitable for very large-scale DTN simulations with millions of agents
 practice since DTN is generally expected to be utilized in environments with
 spares agents.
 
-# REQUIREMENTS
+# EXAMPLE
 
-- Python version 3.6 or later
-
-- Pytess module
+```sh
+dtnsim | cellx
+```
 
 # INSTALLATION
 
