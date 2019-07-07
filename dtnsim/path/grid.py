@@ -7,7 +7,20 @@
 # $Id: grid.py,v 1.2 2018/10/15 12:59:08 ohsaki Exp ohsaki $
 #
 
-import graphtools
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+import graph_tools
 
 from dtnsim.path.line import Line
 from vector_2d import Vector as V
@@ -16,7 +29,7 @@ class Grid(Line):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # create a grid topology
-        g = graphtools.Graph(directed=False)
+        g = graph_tools.Graph(directed=False)
         self.graph = g
         g.create_graph('lattice', 2, self.size)
 
