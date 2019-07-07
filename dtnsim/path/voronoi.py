@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import graphtools
+import graph_tools
 
 from dtnsim.path.line import Line
 from vector_2d import Vector as V
@@ -31,7 +31,7 @@ class Voronoi(Line):
         super().__init__(*args, **kwargs)
 
         # create a Voronoi topology
-        g = graphtools.Graph(directed=False)
+        g = graph_tools.Graph(directed=False)
         self.graph = g
         g.create_graph('voronoi', self.npoints, self.width, self.height)
 
