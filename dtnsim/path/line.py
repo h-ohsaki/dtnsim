@@ -20,7 +20,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import graphtools
+import graph_tools
 
 from dtnsim.path.none import NONE
 from vector_2d import Vector as V
