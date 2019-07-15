@@ -8,18 +8,17 @@ import setuptools
 with open('README.md', 'r') as fh:
     long_description = fh.read()
 
-# Pytess
 setuptools.setup(
     name='dtnsim',
-    version='1.0',
+    version='1.1',
     author='Hiroyuki Ohsaki',
     author_email='ohsaki@lsnl.jp',
-    description='DTN (Delay/Disruption Tolerant Networking) simulator',
+    description='DTN (Delay/Disruption Tolerant Networking) simulator with several agent/mobility models',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url="https://github.com/h-ohsaki/dtnsim",
     packages=setuptools.find_packages(),
-    install_requires=['Pytess', 'pycell'],
+    install_requires=['Pytess', 'perlcompat', 'cellx'],
     scripts=['bin/dtnsim'],
     classifiers=[
         'Programming Language :: Python :: 3',
