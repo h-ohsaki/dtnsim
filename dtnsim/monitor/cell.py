@@ -4,8 +4,6 @@
 # Copyright (c) 2011-2018, Hiroyuki Ohsaki.
 # All rights reserved.
 #
-# Id: Cell.pm,v 1.3 2017/11/08 03:22:30 ohsaki Exp ohsaki $
-#
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,9 +17,6 @@
 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-import math
-import random
 
 from dtnsim.monitor.null import Null
 
@@ -40,15 +35,14 @@ def to_geometry(v):
 class Cell(Null):
     def open(self):
         """Initialize the color palette."""
-        print('palette c_vertex    0.4 0.8 1.0 0.2')
-        print('palette c_edge      0.4 0.8 1.0 0.2')
-        print('palette c_sus_range 0.2 0.7 1.0 0.1')
-        print('palette c_sus       0.4 0.8 1.0 0.7')
-        print('palette c_inf_range 1.0 0.7 0.0 0.2')
-        print('palette c_inf       1.0 0.8 0.0 0.7')
-        print('palette c_delivery  1.0 0.8 0.0 0.2')
-        print('palette c_dst_range 1.0 0.4 0.2 0.2')
-        print('palette c_dst       1.0 0.4 0.2 0.7')
+        print('palette c_edge   heat50 .6')
+        print('palette c_vertex heat50 .9')
+        print('palette c_sus_range heat10 .6')
+        print('palette c_sus       heat10 .9')
+        print('palette c_inf_range heat85 .6')
+        print('palette c_inf       heat85 .9')
+        print('palette c_wait_sus_range heat30 .6')
+        print('palette c_wait_sus       heat30 .9')
 
     def close(self):
         pass
@@ -72,6 +66,8 @@ class Cell(Null):
         """Update the color of agent if it has already received a message."""
         id_ = agent.id_
         color = 'c_sus'
+        if agent.mobility.wait:
+            color = 'c_wait_sus'
         if agent.received or agent.receive_queue:
             color = 'c_inf'
         print('color agent{} {}'.format(id_, color))
@@ -110,22 +106,6 @@ class Cell(Null):
             'define status_l text Time:{},____TX:{},____RX:{},____DUP:{},____Delivered:{}__/__{},____Arrived:{} 14 white 0.5 0.05'
             .format(time, tx, rx, dup, uniq_delivered_total, uniq_total,
                     delivered_total))
-
-    def display_forward(self, src_agent, dst_agent, msg):
-        """Display the completion of message delivery for agents of Fixed
-        class."""
-        super().display_forward(src_agent, dst_agent, msg)
-        if not self.is_delivered(dst_agent, msg):
-            return
-        if 'Fixed' not in dst_agent.mobility.__class__.__name__:
-            return
-
-        src, dst = dst_agent.msg_src(msg), dst_agent.msg_dst(msg)
-        src_p = self.scheduler.agent_by_id(src).mobility.current
-        dst_p = self.scheduler.agent_by_id(dst).mobility.current
-        x1, y1, x2, y2 = to_geometry(src_p[0]), to_geometry(
-            src_p[1]), to_geometry(dst_p[0]), to_geometry(dst_p[1])
-        print('define - line {} {} {} {} 1 c_delivery'.format(x1, y1, x2, y2))
 
     def update(self):
         print('display')
