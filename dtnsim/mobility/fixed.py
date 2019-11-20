@@ -47,7 +47,7 @@ class Fixed:
         try:
             return math.acos((v1 * v2) / (abs(v1) * abs(v2)))
         except ValueError:
-            return math.pi / 2  # ???
+            return 0
 
     def move(self, delta):
         """Move the agent for the duration of DELTA."""
