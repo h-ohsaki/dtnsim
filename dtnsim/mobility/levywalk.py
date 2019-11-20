@@ -4,8 +4,6 @@
 # Copyright (c) 2011-2015, Hiroyuki Ohsaki.
 # All rights reserved.
 #
-# Id: LevyWalk.pm,v 1.11 2015/12/09 14:45:23 ohsaki Exp $
-#
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,7 +22,7 @@ import random
 import math
 
 from dtnsim.mobility.rwp import RandomWaypoint
-from vector_2d import Vector as V
+from dtnsim.vector import Vector as V
 
 def pareto(scale, shape):
     """Generate a random variable following the Pareto distribution with
