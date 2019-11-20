@@ -4,8 +4,6 @@
 # Copyright (c) 2011-2018, Hiroyuki Ohsaki.
 # All rights reserved.
 #
-# Id: LimitedRandomWaypoint.pm,v 1.8 2015/12/09 14:45:23 ohsaki Exp $
-#
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,7 +21,7 @@
 import random
 
 from dtnsim.mobility.rwp import RandomWaypoint
-from vector_2d import Vector as V
+from dtnsim.vector import Vector as V
 
 class LimitedRandomWaypoint(RandomWaypoint):
     def __init__(self, xmin=0, ymin=0, xmax=1000, ymax=1000, *kargs, **kwargs):
