@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 #
 # A mobility class for stationary agents.
-# Copyright (c) 2013-2018, Hiroyuki Ohsaki.
+# Copyright (c) 2013-2019, Hiroyuki Ohsaki.
 # All rights reserved.
-#
-# Id: Fixed.pm,v 1.13 2015/12/30 02:54:47 ohsaki Exp $
 #
 
 # This program is free software: you can redistribute it and/or modify
@@ -21,7 +19,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import math, random
-from vector_2d import Vector as V
+from dtnsim.vector import Vector as V
 
 class Fixed:
     def __init__(self, width=1000, height=1000, current=None, *kargs,
