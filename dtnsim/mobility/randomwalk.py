@@ -4,8 +4,6 @@
 # Copyright (c) 2011-2013, Hiroyuki Ohsaki.
 # All rights reserved.
 #
-# Id: RandomWalk.pm,v 1.11 2015/12/09 14:45:23 ohsaki Exp $
-#
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,7 +21,7 @@
 import math
 import random
 
-from vector_2d import Vector as V
+from dtnsim.vector import Vector as V
 from dtnsim.mobility.fixed import Fixed
 
 class RandomWalk(Fixed):
