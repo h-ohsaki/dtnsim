@@ -10,7 +10,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='dtnsim',
-    version='1.2',
+    version='1.3',
     author='Hiroyuki Ohsaki',
     author_email='ohsaki@lsnl.jp',
     description='DTN (Delay/Disruption Tolerant Networking) simulator with several agent/mobility models',
@@ -18,7 +18,7 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     url="https://github.com/h-ohsaki/dtnsim",
     packages=setuptools.find_packages(),
-    install_requires=['Pytess', 'perlcompat', 'cellx', 'vector_2d', 'graph_tools'],
+    install_requires=['Pytess', 'perlcompat', 'cellx', 'graph_tools'],
     scripts=['bin/dtnsim'],
     classifiers=[
         'Programming Language :: Python :: 3',
