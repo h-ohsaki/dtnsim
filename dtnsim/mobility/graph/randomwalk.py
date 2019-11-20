@@ -4,8 +4,6 @@
 # Copyright (c) 2011-2018, Hiroyuki Ohsaki.
 # All rights reserved.
 #
-# $Id: randomwalk.py,v 1.2 2018/10/15 12:54:39 ohsaki Exp ohsaki $
-#
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
