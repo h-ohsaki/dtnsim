@@ -4,8 +4,6 @@
 # Copyright (c) 2011-2018, Hiroyuki Ohsaki.
 # All rights reserved.
 #
-# Id: Null.pm,v 1.14 2015/12/28 10:28:46 ohsaki Exp $
-#
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
