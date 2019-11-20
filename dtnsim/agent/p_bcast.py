@@ -4,8 +4,6 @@
 # Copyright (c) 2011-2015, Hiroyuki Ohsaki.
 # All rights reserved.
 #
-# Id: P_BCAST.pm,v 1.32 2015/12/09 14:45:23 ohsaki Exp $
-#
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
