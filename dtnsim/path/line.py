@@ -4,8 +4,6 @@
 # Copyright (c) 2011-2018, Hiroyuki Ohsaki.
 # All rights reserved.
 #
-# $Id: line.py,v 1.2 2018/10/15 13:00:47 ohsaki Exp ohsaki $
-#
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,7 +21,7 @@
 import graph_tools
 
 from dtnsim.path.none import NONE
-from vector_2d import Vector as V
+from dtnsim.vector import Vector as V
 
 class Line(NONE):
     def __init__(self, size=5, *args, **kwargs):
