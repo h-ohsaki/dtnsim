@@ -4,8 +4,6 @@
 # Copyright (c) 2011-2019, Hiroyuki Ohsaki.
 # All rights reserved.
 #
-# Id: CarryOnly.pm,v 1.11 2015/12/11 08:14:04 ohsaki Exp $
-#
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
