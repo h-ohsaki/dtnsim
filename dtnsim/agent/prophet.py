@@ -4,8 +4,6 @@
 # Copyright (c) 2011-2018, Hiroyuki Ohsaki.
 # All rights reserved.
 #
-# Id: ProPHET.pm,v 1.8 2016/01/19 17:25:53 ohsaki Exp $
-#
 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
