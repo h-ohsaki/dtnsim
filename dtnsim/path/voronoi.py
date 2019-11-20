@@ -1,10 +1,8 @@
 #!/usr/bin/env3 python3
 #
-#
-# Copyright (c) 2011-2015, Hiroyuki Ohsaki.
+# A class for Voronoi path.
+# Copyright (c) 2011-2019, Hiroyuki Ohsaki.
 # All rights reserved.
-#
-# $Id: voronoi.py,v 1.2 2018/10/15 13:01:53 ohsaki Exp ohsaki $
 #
 
 # This program is free software: you can redistribute it and/or modify
@@ -23,7 +21,7 @@
 import graph_tools
 
 from dtnsim.path.line import Line
-from vector_2d import Vector as V
+from dtnsim.vector import Vector as V
 
 class Voronoi(Line):
     def __init__(self, npoints=100, *args, **kwargs):
