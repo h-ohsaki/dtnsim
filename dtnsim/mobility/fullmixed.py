@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 #
 # A mobility class for simulating FullMixed model.
-# Copyright (c) 2016-2018, Hiroyuki Ohsaki.
+# Copyright (c) 2016-2019, Hiroyuki Ohsaki.
 # All rights reserved.
-#
-# Id: FullMixed.pm,v 1.5 2016/07/03 10:32:54 ohsaki Exp $
 #
 
 # This program is free software: you can redistribute it and/or modify
@@ -25,7 +23,7 @@
 import random
 
 from dtnsim.mobility.fixed import Fixed
-from vector_2d import Vector as V
+from dtnsim.vector import Vector as V
 
 NODE_SEPERATION = 25
 max_id = 0
