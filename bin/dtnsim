@@ -28,6 +28,7 @@ import dtnsim.mobility
 import dtnsim.mobility.graph
 import dtnsim.monitor
 import dtnsim.path
+import dtnsim.scheduler
 
 from perlcompat import die, getopts
 
@@ -96,7 +97,7 @@ def main():
     # initialize random number generator
     random.seed(seed)
 
-    sched = dtnsim.Scheduler(max_time=1000000, delta=5)
+    sched = dtnsim.scheduler.Scheduler(max_time=1000000, delta=5)
     cls = eval('dtnsim.monitor.' + monitor_class)
 
     monitor = cls(scheduler=sched)
