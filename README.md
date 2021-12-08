@@ -1,6 +1,6 @@
 # NAME
 
-dtnsim - DTN (Delay/Disruption Tolerant Networking) simulator written in Python
+dtnsim - DTN (Delay/Disruption Tolerant Networking) simulator with several agent/mobility models
 
 # DESCRIPTION
 
