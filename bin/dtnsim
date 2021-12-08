@@ -45,7 +45,7 @@ usage: {} [-v] [-s #] [-n #] [-r range] [-I id[,id]...] [-m mobility] [-p path] 
   -n #          number of agents
   -r range      communication range [m]
   -I id[,id...] initial infected nodes
-  -m mobility   name of mobility class (Fixed/FullMixed/LevyWalk/LimitedRandomWaypoint/RandomWalk/RandomWaypoint/graph.Fixed/graph.Sequential/graph.RandomWalk/grpah.CRWP)
+  -m mobility   name of mobility class (Fixed/FullMixed/LevyWalk/LimitedRandomWaypoint/RandomWalk/RandomWaypoint/graph.Fixed/graph.Sequential/graph.RandomWalk/graph.CRWP)
   -p path       name of path class (NONE/Line/Grid/Voronoi)
   -a agent      name of agent class (CarryOnly/Random/Epidemic/P_BCAST/SA_BCAST/HP_BCAST/ProPHET)
   -M monitor    name of monitor class (Null/Log/Cell)
