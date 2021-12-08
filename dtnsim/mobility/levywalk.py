@@ -28,7 +28,8 @@ def pareto(scale, shape):
     """Generate a random variable following the Pareto distribution with
     parameters SCALE and SHAPE.  Note that the mean of the Pareto distribution
     is given by SHAPE * SCALE / (SHAPE - 1)."""
-    return scale / random.uniform(0, 1 / shape)
+    # https://en.wikipedia.org/wiki/Pareto_distribution#Random_sample_generation
+    return scale / random.uniform(0, 1) ** (1 / shape)
 
 class LevyWalk(RandomWaypoint):
     def __init__(self, scale=100, shape=1.5, *kargs, **kwargs):
