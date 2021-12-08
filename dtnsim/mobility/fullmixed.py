@@ -53,7 +53,7 @@ class FullMixed(Fixed):
                 self.visit_list.append(to_id)
 
         # visit other to-count agents sequentially
-        if self.visit_list():
+        if self.visit_list:
             to_id = self.visit_list.pop(0)
             self.current = self.coordinate_for(to_id)
         else:
