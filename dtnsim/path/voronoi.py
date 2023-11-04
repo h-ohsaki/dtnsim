@@ -35,7 +35,7 @@ class Voronoi(Line):
 
         # save the positions of vertices as Vector object
         for v in g.vertices():
-            x, y = g.get_vertex_attribute(v, 'pos').split(',')
+            _, x, y = g.get_vertex_attribute(v, 'pos').split('+')
             x, y = float(x), float(y)
             g.set_vertex_attribute(v, 'xy', V(x, y))
 
