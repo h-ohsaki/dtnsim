@@ -10,7 +10,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name='dtnsim',
-    version='1.4',
+    version='1.5',
     author='Hiroyuki Ohsaki',
     author_email='ohsaki@lsnl.jp',
     description='DTN (Delay/Disruption Tolerant Networking) simulator with several agent/mobility models',
