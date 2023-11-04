@@ -32,6 +32,7 @@ class CRWP(RandomWalk):
         self.goal_edge = None
         self.goal_offset = None
         self.wait = False
+        self.visited_vertices = None
         self.pick_goal()
         self.update_velocity()
 
@@ -47,7 +48,7 @@ class CRWP(RandomWalk):
         """Select the link through which the agent should proceed to reach its
         destination (goal).  This code assumes that the agent is just on the
         vertex and the graph is plannar."""
-        # NOTE: this code assumes that the current position of the agent is is V
+        # NOTE: this code assumes that the current position of the agent is V
         u, v = self.current_edge
         pv = self.vertex_coordinate(v)
         next_ = u  # for fail safe
@@ -83,6 +84,7 @@ class CRWP(RandomWalk):
         self.goal_offset = offset
         self.update_goal_cache()
         self.reverse_current_if_necessary()
+        self.visited_vertices = []
 
     def move(self, delta):
         """Move the agent for the duration of DELTA."""
@@ -103,4 +105,16 @@ class CRWP(RandomWalk):
             self.pick_goal()
             self.update_velocity()
         elif abs(self.current_offset - l) < step or self.current_offset > l:
-            self.select_route()
+            # NOTE: this code assumes that the current position of the agent is V
+            u, v = self.current_edge
+            # FIXME: The current implementation of select_route sometimes fails and
+            # results in indefinite loop.  This code forces to pick a new goal once
+            # a loop is detected.
+            if v in self.visited_vertices: # Is looping?
+                # force to pick another goal
+                self.wait = self.pause_func()
+                self.pick_goal()
+                self.update_velocity()
+            else:
+                self.select_route()
+                self.visited_vertices.append(v)
