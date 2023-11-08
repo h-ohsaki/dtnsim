@@ -35,14 +35,14 @@ def to_geometry(v):
 class Cell(Null):
     def open(self):
         """Initialize the color palette."""
-        print('palette c_edge   heat50 .6')
-        print('palette c_vertex heat50 .9')
-        print('palette c_sus_range heat10 .6')
-        print('palette c_sus       heat10 .9')
-        print('palette c_inf_range heat85 .6')
-        print('palette c_inf       heat85 .9')
-        print('palette c_wait_sus_range heat30 .6')
-        print('palette c_wait_sus       heat30 .9')
+        print('palette c_edge   heat10 .2')
+        print('palette c_vertex heat20 .9')
+        print('palette c_sus_range heat20 .3')
+        print('palette c_sus       heat20 .9')
+        print('palette c_inf_range heat80 .3')
+        print('palette c_inf       heat80 .9')
+        print('palette c_wait_sus_range heat20 .3')
+        print('palette c_wait_sus       heat20 .9')
 
     def close(self):
         pass
