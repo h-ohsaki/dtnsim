@@ -45,7 +45,7 @@ class RandomWalk(Fixed):
         edge = self.current_edge
         current_vertex = edge[1]
         neighbors = self.path.graph.neighbors(edge[1])
-        next_vertex = random.choice(neighbors)
+        next_vertex = random.choice(tuple(neighbors))
         self.move_to_point([current_vertex, next_vertex], 0)
 
     def move(self, delta):
