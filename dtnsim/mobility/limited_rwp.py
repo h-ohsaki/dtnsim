@@ -25,11 +25,11 @@ from dtnsim.vector import Vector as V
 
 class LimitedRandomWaypoint(RandomWaypoint):
     def __init__(self, xmin=0, ymin=0, xmax=1000, ymax=1000, *kargs, **kwargs):
-        super().__init__(*kargs, **kwargs)
         self.xmin = xmin
         self.ymin = ymin
         self.xmax = xmax
         self.ymax = ymax
+        super().__init__(*kargs, **kwargs)
 
     def random_coordinate(self):
         """Pick a random coordinate on the field."""
