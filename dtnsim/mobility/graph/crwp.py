@@ -32,7 +32,7 @@ class CRWP(RandomWalk):
         self.goal_edge = None
         self.goal_offset = None
         self.wait = False
-        self.visited_vertices = None
+        self.visited_vertices = []
         self.pick_goal()
         self.update_velocity()
 
