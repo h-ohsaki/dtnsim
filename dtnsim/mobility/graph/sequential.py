@@ -24,10 +24,10 @@ from dtnsim.mobility.graph.crwp import CRWP
 
 class Sequential(CRWP):
     def __init__(self, next_goal=2, *kargs, **kwargs):
-        super().__init__(*kargs, **kwargs)
         self.next_goal = next_goal
-        # reposition to vertex 1
-        self.move_to_point(self.vertex_point(1))
+        super().__init__(*kargs, **kwargs)
+        # Reposition to vertex 1.
+        self.move_to_vertex(1)
 
     def pick_goal(self):
         """Select the next goal; visit vertices in the ascending order of
@@ -38,7 +38,7 @@ class Sequential(CRWP):
         self.update_goal_cache()
         self.reverse_current_if_necessary()
 
-        nvertices = len(self.path.graph.vertices())
+        nvertices = self.path.graph.nvertices()
         next_goal = self.next_goal + 1
         if next_goal > nvertices:
             next_goal = 1
