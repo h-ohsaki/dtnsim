@@ -85,7 +85,7 @@ class Fixed(_Fixed):
 
     def move_to_vertex(self, v):
         """Directly jump to the vertex V."""
-        self.move_to_point(self.vertex_point(v))
+        self.move_to_point(*self.vertex_point(v))
 
     def update_current_cache(self):
         """Compute and store the current coordinate for later use."""
