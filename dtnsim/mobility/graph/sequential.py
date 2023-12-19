@@ -32,6 +32,7 @@ class Sequential(CRWP):
     def pick_goal(self):
         """Select the next goal; visit vertices in the ascending order of
         their IDs."""
+        # FIXME: This code does not work with the current CRWP.
         edge, offset = self.vertex_point(self.next_goal)
         self.goal_edge = edge
         self.goal_offset = offset
